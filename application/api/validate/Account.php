@@ -13,7 +13,7 @@ class Account extends Validate
 {
     // 验证规则
     protected $rule = [
-        ['name', 'require|min:5'],
-        ['email', 'email'],
+        ['name', 'require|min:5|max:32'],
+        ['email', 'require|email'],
     ];
 }
