@@ -10,13 +10,21 @@ namespace app\api\controller;
 use app\api\model\User;
 use think\Controller;
 use think\Cache\Driver\Redis;
+use think\Request;
 
 
 class Account extends Controller
 {
+    public $redis;
+
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->redis = new Redis();
+
+    }
+
     public function register(){
-        echo $_SERVER["REQUEST_URI"]."</br>";
-        echo $_SERVER["PATH_INFO"]."</br>";
         $new_u = input('get.');
         $ref = validate('Account')->check($new_u);
         if ($ref == false){
@@ -26,21 +34,24 @@ class Account extends Controller
         $user2 = User::get(['email' => $new_u['email']]);
         if ($user1 || $user2){
             if ($user1){
-                echo 'user exists'."</br>";
+                return myJson(400, '用户名已存在');
             }
             if ($user2){
-                echo 'email exists';
+                echo myJson(400, '邮箱已存在');
             }
             return '';
         }
+
         $user = new User($new_u);
         $user['create_time'] = time();
-
+        $user['password'] = md5($new_u['password']);
         if ($user->allowField(true)->save()){
-            echo 'succces';
+            return myJson(200, '注册成功');
         }else {
-            echo 'failed';
+            echo myJson(200, '注册失败');
         }
+
+
     }
 
     /*
@@ -49,9 +60,11 @@ class Account extends Controller
      * 2.根据登录方式sql查找密码是否匹配
      * 3.若匹配，则返回用户相关信息json；否则，返回null
      * 4.app根据返回信息，是否登录
+     * 5.登录后的操作均需携带sign和id
      * */
-    public function login(){
-        $name = input('get.username');
+    public function login($name, $password){
+        $name = input('get.name');
+        $password = input('get.password');
 
         if (strpos($name,'@') == true){
             //邮箱登录
@@ -60,53 +73,77 @@ class Account extends Controller
         }else {
             //用户名登录
             $user = User::get(['name' => $name]);
+        }
+        if (!$user){
+             myJson(403, '该用户不存在');
+        }
 
+        if (md5($password) != $user['password']){
+            return myJson(402, '密码不正确,请重新输入');
         }
-        if ($user == null){
-            echo '用户不存在';
-        }
-        echo $user->create_time;
+
+        $url = $this->getUrl();
+
+        $token = $this->redis_write($user['id'], md5(time()));
+        $sign = $this->getSign($url, $token);
+        $user['sign'] = $sign;
+        return myJson('200', '登录成功', $user);
     }
 
-    public function update(){
 
+    public function update($sign){
+        $id = isset($id)?input('get.id'):1;
+        $sign = input('get.sign');
 
-        return $this->fetch('jo');
-        $user = User::get(1);
+        if (!$this->isUser($id, $sign))
+            return myJson(403, '签名错误');
+
+        $user = User::get($id);
         $this->assign('createTime',$user->create_time);
-        return $this->fetch();
+
         echo $user->create_time;
         echo $user->update_time;
         $user['birthday'] = '2003-03-02';
         $user->save();
+        echo $user->birthday;
     }
 
-    public function redis(){
-
-        echo date('Y-m-d H:i:s', time());
-        $redis = new Redis();
-        $array = [
-            'name' => "Jo",
-            'age'  => 25,
-        ];
-        $redis->set('name', $array, 5);
-        dump($redis->get('name')) ;
-        echo "Connection to server sucessfully"."</br>";
-        header("refresh:1");
+    /**
+     * 在Redis中设置token值
+     * @param $key
+     * @param $value
+     * @return Token
+     */
+    private function redis_write($key,$value){
+        $this->redis->set($key, $value);
+        return $value;
 
     }
 
-    public function jo(){
-        echo "changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsachangefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsachangefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsachangefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa
-        changefdsafdsafkdlsa;fjdsaklfjdklas;jfkldasfdsajk fjdsak;fdsajkjkfsa;ljkf dsa jkfdsaj;klaskl;j fjfkas;dl; fdjsa";
+    /**
+     * 判断用户有效性
+     * @param $id
+     * @param $sign
+     * @return bool
+     */
+    private function isUser($id, $sign){
+        $url = $this->getUrl();
+        $token = $this->redis->get($id);
+        if ($sign == $this->getSign($url, $token)){
+            return true;
+        }else {
+            return false;
+        }
     }
+
+    private function getUrl(){
+        return $_SERVER["SERVER_ADMIN"].$_SERVER["SERVER_ADDR"];
+    }
+
+    private function getSign($url, $token) {
+        return substr(md5($url."?token=".$token), 8, 24);
+    }
+
 }
 
 

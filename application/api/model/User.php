@@ -12,8 +12,10 @@ use think\Model;
 class User extends Model
 {
 
+    private $time;
     //新增、更新
     protected $auto = ['update_time'];
+
     protected function setUpdateTimeAttr()
     {
         return request()->time();
@@ -27,6 +29,7 @@ class User extends Model
     protected function setBirthdayAttr($value) {
         return strtotime($value);
     }
+
     // 读取器
     protected function getBirthdayAttr($birthday)
     {
