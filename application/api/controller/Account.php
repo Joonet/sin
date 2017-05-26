@@ -144,6 +144,30 @@ class Account extends Controller
         return substr(md5($url."?token=".$token), 8, 24);
     }
 
+
+
+    public function index(){
+
+        return $this->fetch('jo');
+        echo $_POST['fname']."Jo";
+
+        $config = array(
+            'host'      =>  '127.0.0.1',
+            'username'  =>  'root',
+            'password'  =>  'admin',
+        );
+        $conn = mysqli_connect($config['host'], $config['username'], $config['password']);
+        if ($conn->error){
+            echo '没有链接';
+        }
+
+        $pre = $conn->prepare('');
+//        $pre->bind_param("sss")
+        $pre->execute();
+
+
+    }
+
 }
 
 

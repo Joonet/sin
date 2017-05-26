@@ -31,6 +31,7 @@
 500 Internal Server Error: 服务器错误，确认状态并报告问题
  */
 
+
 function myJson($status, $msg, $data = ''){
     return json(array(
         'status' => $status,
@@ -38,3 +39,45 @@ function myJson($status, $msg, $data = ''){
         'data'   => $data,
         ));
 }
+
+function getLedColor($id) {
+
+}
+
+function getActionFeed($id) {
+
+}
+
+
+function getAPMById($id) {
+
+}
+
+function getPushFrequency($id) {
+
+}
+
+function getPushPattern($id) {
+
+}
+
+function getActionCombo($id) {
+
+}
+
+function getMouseHeatMap($id) {
+
+}
+
+function getStickHeatMap($id) {
+
+}
+
+function getSpringTime($id) {
+
+}
+
+function getLayoutPerform($id) {
+
+}
+

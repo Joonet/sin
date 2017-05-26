@@ -13,6 +13,7 @@ use think\Request;
 
 class Mixed extends Controller
 {
+
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
@@ -24,9 +25,70 @@ class Mixed extends Controller
 
         echo CONSTANT;
 
-        $dd = array('Jo','Mi',"Hua");
-        sort($dd);
-        print_r($dd) ;
+        echo __LINE__;
+        echo __FILE__;
+        echo __DIR__;
+        echo __CLASS__;
+        echo __NAMESPACE__;
+
+        return $this->fetch();
     }
+
+    public function test(){
+
+
+        $tmp = 300;
+        $int_options = array(
+            "options" => array(
+                "min_range" => 200,
+                "max_range" => 302,
+            ),
+        );
+
+        if (filter_var(300, FILTER_VALIDATE_INT,$int_options)){
+            echo "2";
+        }else {
+            echo "3";
+        }
+
+
+        if (!filter_has_var(INPUT_GET, 'name')){
+            echo 'no';
+        }else {
+            echo $_GET['name'];
+        }
+
+        echo "</br>";
+        echo "jo","ja";
+
+        $dd = 7;
+        var_dump($dd);
+
+
+        $arr = array(
+            'name'      => 'jo',
+            'age'       => 25,
+            'sex'       => 'male',
+            'birthday'  => '1992-10-30'
+        );
+
+        ksort($arr);
+
+        foreach ($arr as $key => $value){
+            echo $key."-".$value."</br>";
+        }
+
+        $a = 5;
+        while ($a){
+            echo --$a;
+        }
+
+
+    }
+
+    public function hehe(){
+        echo $_REQUEST['fname'];
+    }
+
 
 }

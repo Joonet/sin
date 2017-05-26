@@ -23,6 +23,7 @@ use think\Route;
 //
 //];
 
-Route::alias('mobile','api/Account');
+Route::alias('account','api/Account');
+Route::alias('mixed','api/Mixed');
 
 
