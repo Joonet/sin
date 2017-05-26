@@ -9,7 +9,7 @@
 namespace app\api\controller;
 use app\api\model\User;
 use think\Controller;
-use think\Cache\Driver\Redis;
+use think\cache\driver\Redis;
 use think\Request;
 
 
