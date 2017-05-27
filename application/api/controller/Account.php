@@ -7,31 +7,31 @@
  * Time: 14:29
  */
 namespace app\api\controller;
-use app\api\model\User;
-use think\Controller;
 use think\cache\driver\Redis;
 use think\Request;
+use app\api\base\ApiBase;
+use app\api\model\User;
 
 
-class Account extends Controller
+class Account extends ApiBase
 {
-    public $redis;
+
 
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
-        $this->redis = new Redis();
+        self::$redis = new Redis();
 
     }
 
     public function register(){
-        $new_u = input('get.');
-        $ref = validate('Account')->check($new_u);
+        $params = input('get.');
+        $ref = validate('Account')->check($params);
         if ($ref == false){
             return validate('Account')->getError();
         }
-        $user1 = User::get(['name' => $new_u['name']]);
-        $user2 = User::get(['email' => $new_u['email']]);
+        $user1 = User::get(['name' => $params['name']]);
+        $user2 = User::get(['email' => $params['email']]);
         if ($user1 || $user2){
             if ($user1){
                 return myJson(400, '用户名已存在');
@@ -42,14 +42,16 @@ class Account extends Controller
             return '';
         }
 
-        $user = new User($new_u);
+        $user = new User($params);
         $user['create_time'] = time();
-        $user['password'] = md5($new_u['password']);
+        $user['password'] = md5($params['password']);
         if ($user->allowField(true)->save()){
             return myJson(200, '注册成功');
         }else {
-            echo myJson(200, '注册失败');
+            echo myJson(403, '注册失败');
         }
+
+        //分表data存储
 
 
     }
@@ -75,7 +77,7 @@ class Account extends Controller
             $user = User::get(['name' => $name]);
         }
         if (!$user){
-             myJson(403, '该用户不存在');
+             return myJson(404, '该用户不存在');
         }
 
         if (md5($password) != $user['password']){
@@ -85,15 +87,18 @@ class Account extends Controller
         $url = $this->getUrl();
 
         $token = $this->redis_write($user['id'], md5(time()));
+        echo "T:".$token;
         $sign = $this->getSign($url, $token);
         $user['sign'] = $sign;
+        echo $sign;
         return myJson('200', '登录成功', $user);
     }
 
 
-    public function update($sign){
+    public function update($id,$sign){
         $id = isset($id)?input('get.id'):1;
         $sign = input('get.sign');
+        echo $sign;
 
         if (!$this->isUser($id, $sign))
             return myJson(403, '签名错误');
@@ -115,33 +120,9 @@ class Account extends Controller
      * @return Token
      */
     private function redis_write($key,$value){
-        $this->redis->set($key, $value);
+        self::$redis->set($key, $value);
         return $value;
 
-    }
-
-    /**
-     * 判断用户有效性
-     * @param $id
-     * @param $sign
-     * @return bool
-     */
-    private function isUser($id, $sign){
-        $url = $this->getUrl();
-        $token = $this->redis->get($id);
-        if ($sign == $this->getSign($url, $token)){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    private function getUrl(){
-        return $_SERVER["SERVER_ADMIN"].$_SERVER["SERVER_ADDR"];
-    }
-
-    private function getSign($url, $token) {
-        return substr(md5($url."?token=".$token), 8, 24);
     }
 
 
