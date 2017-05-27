@@ -11,6 +11,7 @@ use think\cache\driver\Redis;
 use think\Request;
 use app\api\base\ApiBase;
 use app\api\model\User;
+use app\api\model\PlatformPreference;
 
 
 class Account extends ApiBase
@@ -25,7 +26,7 @@ class Account extends ApiBase
     }
 
     public function register(){
-        $params = input('get.');
+        $params = input('post.');
         $ref = validate('Account')->check($params);
         if ($ref == false){
             return validate('Account')->getError();
@@ -37,22 +38,37 @@ class Account extends ApiBase
                 return myJson(400, '用户名已存在');
             }
             if ($user2){
-                echo myJson(400, '邮箱已存在');
+                return myJson(400, '邮箱已存在');
             }
-            return '';
         }
 
         $user = new User($params);
         $user['create_time'] = time();
         $user['password'] = md5($params['password']);
         if ($user->allowField(true)->save()){
-            return myJson(200, '注册成功');
+            //echo myJson(200, '注册成功');
         }else {
             echo myJson(403, '注册失败');
         }
+        echo 'user_id:'.$user['id'];
+        /**
+         * 分表data存储
+         *  sinister_platform_perference
+         *  sinister_game_type_preference
+         * */
 
-        //分表data存储
-
+        //将字符串分解为数字数组
+        //mobile-console-laptop-pc
+        $var = explode("-", $params['platform']);
+        $tmp = array();
+        foreach ($var as $key=>$value){
+            $tmp[$value] = $key + 1;
+        }
+        $tmp['user_id'] = $user['id'];
+        $platformPer = new PlatformPreference($tmp);
+        if ($platformPer->save()){
+            echo 'platform数据保存成功';
+        }
 
     }
 
@@ -65,8 +81,8 @@ class Account extends ApiBase
      * 5.登录后的操作均需携带sign和id
      * */
     public function login($name, $password){
-        $name = input('get.name');
-        $password = input('get.password');
+        $name = input('post.name');
+        $password = input('post.password');
 
         if (strpos($name,'@') == true){
             //邮箱登录
@@ -87,18 +103,15 @@ class Account extends ApiBase
         $url = $this->getUrl();
 
         $token = $this->redis_write($user['id'], md5(time()));
-        echo "T:".$token;
         $sign = $this->getSign($url, $token);
         $user['sign'] = $sign;
-        echo $sign;
         return myJson('200', '登录成功', $user);
     }
 
 
     public function update($id,$sign){
-        $id = isset($id)?input('get.id'):1;
-        $sign = input('get.sign');
-        echo $sign;
+        $id = isset($id)?input('post.id'):1;
+        $sign = input('post.sign');
 
         if (!$this->isUser($id, $sign))
             return myJson(403, '签名错误');

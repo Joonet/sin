@@ -22,7 +22,15 @@ class Mixed extends Controller
     }
 
     public function index(){
-
+        dump(input('get.'));
+        //将字符串分解为数字数组
+        //mobile-console-laptop-pc
+        $var = explode("-", "mobile-console-laptop-pc");
+        $tmp = array();
+        foreach ($var as $key=>$value){
+            $tmp[$value] = $key;
+        }
+        dump($tmp);
         echo CONSTANT;
 
         echo __LINE__;
@@ -31,7 +39,7 @@ class Mixed extends Controller
         echo __CLASS__;
         echo __NAMESPACE__;
 
-        return $this->fetch();
+//        return $this->fetch();
     }
 
     public function test(){
