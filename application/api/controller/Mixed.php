@@ -21,6 +21,11 @@ class Mixed extends Controller
 
     }
 
+    public function jo(){
+        echo json_encode([22,'33']);
+        return json([22,'33']);
+    }
+
     public function index(){
         dump(input('get.'));
         //将字符串分解为数字数组

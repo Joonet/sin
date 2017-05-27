@@ -8,6 +8,7 @@
  */
 namespace app\api\controller;
 use think\cache\driver\Redis;
+use think\Db;
 use think\Request;
 use app\api\base\ApiBase;
 use app\api\model\User;
@@ -43,19 +44,20 @@ class Account extends ApiBase
         }
 
         $user = new User($params);
+
         $user['create_time'] = time();
         $user['password'] = md5($params['password']);
         if ($user->allowField(true)->save()){
-            //echo myJson(200, '注册成功');
+            echo mJson(200, '注册成功');
         }else {
-            echo myJson(403, '注册失败');
+            echo mJson(403, '注册失败');
         }
-        echo 'user_id:'.$user['id'];
+
         /**
          * 分表data存储
          *  sinister_platform_perference
          *  sinister_game_type_preference
-         * */
+         */
 
         //将字符串分解为数字数组
         //mobile-console-laptop-pc
@@ -67,8 +69,11 @@ class Account extends ApiBase
         $tmp['user_id'] = $user['id'];
         $platformPer = new PlatformPreference($tmp);
         if ($platformPer->save()){
-            echo 'platform数据保存成功';
+            return '';
         }
+
+        //前三
+        
 
     }
 

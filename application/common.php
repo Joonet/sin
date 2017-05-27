@@ -40,6 +40,14 @@ function myJson($status, $msg, $data = ''){
         ));
 }
 
+function mJson($status, $msg, $data = ''){
+    return json_encode(array(
+        'status' => $status,
+        'msg'    => $msg,
+        'data'   => $data,
+    ));
+}
+
 function getLedColor($id) {
 
 }
