@@ -68,8 +68,8 @@ class Account extends ApiBase
         }
         $tmp['user_id'] = $user['id'];
         $platformPer = new PlatformPreference($tmp);
-        if ($platformPer->save()){
-            return '';
+        if (!$platformPer->save()){
+            return mJson(400, '处理错误');
         }
 
         //前三
