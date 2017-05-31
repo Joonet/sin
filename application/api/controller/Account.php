@@ -76,8 +76,6 @@ class Account extends ApiBase
         //PUZZLE-PLATFORMER-SHOOTER
         $game_type = $params['game_type'];
         $gameTypes = explode('-', $game_type);
-        dump($gameTypes);
-        //前三
         $nums = array();
         $i = 0;
         foreach ($gameTypes as $value) {
