@@ -73,9 +73,21 @@ class Account extends ApiBase
         }
 
         //前三
-        
+        //PUZZLE-PLATFORMER-SHOOTER
+        $game_type = $params['game_type'];
+        $gameTypes = explode('-', $game_type);
+        dump($gameTypes);
+        //前三
+        $nums = array();
+        $i = 0;
+        foreach ($gameTypes as $value) {
+            $nums[$i] = Db::name('game_type')->where('game_type',$value)->value('id');
+            $i++;
+        }
+        Db::name('game_type_preference')->insert(['top1' => $nums[0], 'top2' => $nums[1], 'top3' => $nums[2], 'user_id' => $user['id']]);
 
     }
+
 
     /*
      *支持邮箱和用户名登录

@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 use think\Controller;
 use think\Request;
+use think\Db;
 
 class Mixed extends Controller
 {
@@ -100,7 +101,19 @@ class Mixed extends Controller
     }
 
     public function hehe(){
-        echo $_REQUEST['fname'];
+        //前三
+        $game_type = 'PUZZLE-PLATFORMER-SHOOTER';
+        $gameTypes = explode('-', $game_type);
+        dump($gameTypes);
+        //前三
+        $nums = array();
+        $i = 0;
+        foreach ($gameTypes as $value) {
+            $nums[$i] = Db::name('game_type')->where('game_type',$value)->value('id');
+            $i++;
+        }
+        Db::name('game_type_preference')->insert(['top1' => $nums[0], 'top2' => $nums[1], 'top3' => $nums[2], 'user_id' => 2222]);
+
     }
 
 

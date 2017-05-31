@@ -18,4 +18,5 @@ class PlatformPreference extends Model
      * laptop
      * pc
      */
+
 }
