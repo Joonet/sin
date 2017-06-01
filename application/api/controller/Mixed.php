@@ -11,8 +11,9 @@ namespace app\api\controller;
 use think\Controller;
 use think\Request;
 use think\Db;
+use app\api\base\ApiBase;
 
-class Mixed extends Controller
+class Mixed extends ApiBase
 {
 
     public function __construct(Request $request = null)
@@ -101,6 +102,10 @@ class Mixed extends Controller
     }
 
     public function hehe(){
+        echo $this->getUrl();
+        echo $_SERVER['HTTP_HOST'].$_SERVER['PATH_INFO'];
+        echo "</br>";
+        return uniqid('',true);
         //前三
         $game_type = 'PUZZLE-PLATFORMER-SHOOTER';
         $gameTypes = explode('-', $game_type);

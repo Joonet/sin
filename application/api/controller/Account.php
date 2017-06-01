@@ -115,11 +115,9 @@ class Account extends ApiBase
             return myJson(402, '密码不正确,请重新输入');
         }
 
-        $url = $this->getUrl();
-
-        $token = $this->redis_write($user['id'], md5(time()));
-        $sign = $this->getSign($url, $token);
-        $user['sign'] = $sign;
+//app客户端持久化token
+        $token = $this->redis_write($user['id'], strtoupper(md5(uniqid('', true))));
+        $user['token'] = $token;
         return myJson('200', '登录成功', $user);
     }
 
@@ -128,7 +126,7 @@ class Account extends ApiBase
         $id = isset($id)?input('post.id'):1;
         $sign = input('post.sign');
 
-        if (!$this->isUser($id, $sign))
+        if (!$this->isUser($id, $sign, $this->getUrl()))
             return myJson(403, '签名错误');
 
         $user = User::get($id);
@@ -155,26 +153,9 @@ class Account extends ApiBase
 
 
 
-    public function index(){
-
-        return $this->fetch('jo');
-        echo $_POST['fname']."Jo";
-
-        $config = array(
-            'host'      =>  '127.0.0.1',
-            'username'  =>  'root',
-            'password'  =>  'admin',
-        );
-        $conn = mysqli_connect($config['host'], $config['username'], $config['password']);
-        if ($conn->error){
-            echo '没有链接';
-        }
-
-        $pre = $conn->prepare('');
-//        $pre->bind_param("sss")
-        $pre->execute();
-
-
+    public function logout(){
+        //验证身份后执行
+        self::$redis->rm('id');
     }
 
 }

@@ -20,14 +20,10 @@ class ApiBase extends Controller
      * @param $sign
      * @return bool
      */
-    protected function isUser($id, $sign){
-        $url = $this->getUrl();
-
+    protected function isUser($id, $sign, $url){
         if (!self::$redis)
             return;
         $token = self::$redis->get($id);
-        echo "</br>";
-        echo $token;
         echo $this->getSign($url, $token);
         if ($sign == $this->getSign($url, $token)){
             return true;
@@ -37,7 +33,7 @@ class ApiBase extends Controller
     }
 
     protected function getUrl(){
-        return $_SERVER["SERVER_ADMIN"].$_SERVER["SERVER_ADDR"];
+        return $_SERVER["HTTP_HOST"].$_SERVER["PATH_INFO"];
     }
 
     protected function getSign($url, $token) {
