@@ -27,7 +27,7 @@ class Account extends ApiBase
     }
 
     public function isuseravailable(){
-        $params = input('get.');
+        $params = input('post.');
         if (isset($params['email'])){
             $user = User::get(['email' => $params['email']]);
             if ($user){
