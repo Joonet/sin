@@ -61,6 +61,9 @@ class Account extends ApiBase
 
         //将字符串分解为数字数组
         //mobile-console-laptop-pc
+        if (!$params['platform'])
+            return '';
+
         $var = explode("-", $params['platform']);
         $tmp = array();
         foreach ($var as $key=>$value){
@@ -74,6 +77,10 @@ class Account extends ApiBase
 
         //前三
         //PUZZLE-PLATFORMER-SHOOTER
+
+        if (!$params['game_type'])
+            return '';
+
         $game_type = $params['game_type'];
         $gameTypes = explode('-', $game_type);
         $nums = array();
@@ -93,7 +100,7 @@ class Account extends ApiBase
      * 2.根据登录方式sql查找密码是否匹配
      * 3.若匹配，则返回用户相关信息json；否则，返回null
      * 4.app根据返回信息，是否登录
-     * 5.登录后的操作均需携带sign和id
+     * 5.登录后的操作均需携带token和id
      * */
     public function login($name, $password){
         $name = input('post.name');
@@ -118,7 +125,7 @@ class Account extends ApiBase
 //app客户端持久化token
         $token = $this->redis_write($user['id'], strtoupper(md5(uniqid('', true))));
         $user['token'] = $token;
-        return myJson('200', '登录成功', $user);
+        return myJson('200', '登录成功', $user->hidden(['password']));
     }
 
 
