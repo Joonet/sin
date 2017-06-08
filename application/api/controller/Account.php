@@ -26,6 +26,24 @@ class Account extends ApiBase
 
     }
 
+    public function isuseravailable(){
+        $params = input('get.');
+        if (isset($params['email'])){
+            $user = User::get(['email' => $params['email']]);
+            if ($user){
+                return myJson(400, '邮箱已存在');
+            }
+        }elseif (isset($params['name'])){
+            $user = User::get(['name' => $params['name']]);
+            if ($user){
+                return myJson(400, '用户名已存在');
+            }
+        }
+
+        return myJson(200, '可以注册');
+
+    }
+
     public function register(){
         $params = input('post.');
         $ref = validate('Account')->check($params);

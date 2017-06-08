@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff49a534-c2cd-4356-9194-e9959f3936d4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/api/controller/Account.php" afterPath="$PROJECT_DIR$/application/api/controller/Account.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +21,8 @@
       <file leaf-file-name="Account.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/api/controller/Account.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="754">
-              <caret line="80" column="41" lean-forward="true" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+            <state relative-caret-position="654">
+              <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
               <folding>
                 <element signature="e#7#84#0#PHP" expanded="true" />
                 <element signature="e#115#144#0#PHP" expanded="true" />
@@ -33,7 +34,7 @@
       <file leaf-file-name="ApiBase.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/api/base/ApiBase.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
+            <state relative-caret-position="464">
               <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
               <folding>
                 <element signature="e#7#84#0#PHP" expanded="true" />
@@ -97,7 +98,7 @@
       <file leaf-file-name="jo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/api/view/account/jo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3882">
+            <state relative-caret-position="4843">
               <caret line="174" column="34" lean-forward="false" selection-start-line="174" selection-start-column="34" selection-end-line="174" selection-end-column="34" />
               <folding />
             </state>
@@ -208,6 +209,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -368,7 +370,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -494,12 +495,13 @@
       <workItem from="1496371245320" duration="1519000" />
       <workItem from="1496456503080" duration="1512000" />
       <workItem from="1496629573089" duration="1789000" />
-      <workItem from="1496904325246" duration="1197000" />
+      <workItem from="1496904325246" duration="1304000" />
+      <workItem from="1496906290884" duration="1165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118603000" />
+    <option name="totallyTimeSpent" value="119875000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -808,7 +810,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/api/base/ApiBase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
+        <state relative-caret-position="464">
           <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
           <folding>
             <element signature="e#7#84#0#PHP" expanded="true" />
@@ -836,7 +838,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/api/view/account/jo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3882">
+        <state relative-caret-position="4843">
           <caret line="174" column="34" lean-forward="false" selection-start-line="174" selection-start-column="34" selection-end-line="174" selection-end-column="34" />
           <folding />
         </state>
@@ -884,8 +886,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/api/controller/Account.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="80" column="41" lean-forward="true" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+        <state relative-caret-position="654">
+          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
           <folding>
             <element signature="e#7#84#0#PHP" expanded="true" />
             <element signature="e#115#144#0#PHP" expanded="true" />
