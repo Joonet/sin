@@ -61,7 +61,7 @@ class Account extends ApiBase
 
         //将字符串分解为数字数组
         //mobile-console-laptop-pc
-        if (!$params['platform'])
+        if (!isset($params['platform']))
             return '';
 
         $var = explode("-", $params['platform']);
@@ -78,7 +78,7 @@ class Account extends ApiBase
         //前三
         //PUZZLE-PLATFORMER-SHOOTER
 
-        if (!$params['game_type'])
+        if (!isset($params['game_type']))
             return '';
 
         $game_type = $params['game_type'];
