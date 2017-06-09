@@ -82,7 +82,7 @@ class Account extends ApiBase
         if (!isset($params['platform']))
             return '';
 
-        $var = explode("-", $params['platform']);
+        $var = explode("/", $params['platform']);
         $tmp = array();
         foreach ($var as $key=>$value){
             $tmp[$value] = $key + 1;
@@ -100,7 +100,7 @@ class Account extends ApiBase
             return '';
 
         $game_type = $params['game_type'];
-        $gameTypes = explode('-', $game_type);
+        $gameTypes = explode('/', $game_type);
         $nums = array();
         $i = 0;
         foreach ($gameTypes as $value) {
