@@ -11,8 +11,20 @@ use think\Model;
 
 class User extends Model
 {
-
-    private $time;
+    private $month = [
+        'January'   => '01',
+        'February'  => '02',
+        'March'     => '03',
+        'April'     => '04',
+        'May'       => '05',
+        'June'      => '06',
+        'July'      => '07',
+        'August'    => '08',
+        'September' => '09',
+        'October'   => '10',
+        'November'  => '11',
+        'December'  => '12',
+    ];
     //新增、更新
     protected $auto = ['update_time'];
 
@@ -26,24 +38,10 @@ class User extends Model
         ];
 
     // birthday修改器
-    protected function setBirthdayAttr($value) {
+    protected function setBirthdayAttr($value)
+    {
 
-        $month = [
-            'January'   => '01',
-            'February'  => '02',
-            'March'     => '03',
-            'April'     => '04',
-            'May'       => '05',
-            'June'      => '06',
-            'July'      => '07',
-            'August'    => '08',
-            'September' => '09',
-            'October'   => '10',
-            'November'  => '11',
-            'December'  => '12',
-        ];
-
-        foreach ($month as $k => $v){
+        foreach ($this->month as $k => $v){
             if (!stripos($value, $k))
                 return 1;
             str_replace($k, $v, $value);
@@ -52,7 +50,14 @@ class User extends Model
     }
     protected function getBirthdayAttr($birthday)
     {
-        return date('Y-m-d', $birthday);
+        $date = date('m/d/Y', $birthday);
+        $date_m = substr($date, 0, 2);
+        foreach ($this->month as $k => $v){
+            if ($v == $date_m)
+                return substr_replace($date, $k, 0, 2);
+        }
+
+        return 'January/01/2017';
     }
 
     protected function setGenderAttr($value)

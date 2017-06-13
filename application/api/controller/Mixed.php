@@ -16,6 +16,20 @@ use app\api\base\ApiBase;
 class Mixed extends ApiBase
 {
 
+    private $month = [
+        'January'   => '01',
+        'February'  => '02',
+        'March'     => '03',
+        'April'     => '04',
+        'May'       => '05',
+        'June'      => '06',
+        'July'      => '07',
+        'August'    => '08',
+        'September' => '09',
+        'October'   => '10',
+        'November'  => '11',
+        'December'  => '12',
+    ];
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
@@ -24,6 +38,15 @@ class Mixed extends ApiBase
     }
 
     public function jo(){
+        $date = date('m/d/Y', 1046534400);
+        $date_m = substr($date, 0, 2);
+        foreach ($this->month as $k => $v){
+            if ($v == $date_m)
+                return substr_replace($date, $k, 0, 2);
+        }
+
+        return 'January/01/2017';
+
         echo substr(md5('139.199.228.33/account/update?token=FBCB372EAE067AB652286AECAF11AE11'), 8, 24);
         echo json_encode([22,'33']);
         return json([22,'33']);
