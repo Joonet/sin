@@ -24,6 +24,7 @@ class ApiBase extends Controller
         if (!self::$redis)
             return;
         $token = self::$redis->get($id);
+        echo $url;
         echo $this->getSign($url, $token);
         if ($sign == $this->getSign($url, $token)){
             return true;

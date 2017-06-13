@@ -148,17 +148,17 @@ class Account extends ApiBase
 
     /**
      * @param image_small,image_large,birthday,gender,location
-     * @param $sign
      * @return \think\response\Json
      */
-    public function update($id, $sign){
-        $id = isset($id)?input('post.id'):1;
+    public function update(){
+        $id = input('post.id');
         $sign = input('post.sign');
 
         if (!$this->isUser($id, $sign, $this->getUrl()))
             return myJson(403, '签名错误');
 
         $user = User::get($id);
+        return $user;
         $params = input('post.');
         $user['image_small'] = $params['image_small'];
         $user['image_large'] = $params['image_large'];

@@ -24,6 +24,7 @@ class Mixed extends ApiBase
     }
 
     public function jo(){
+        echo substr(md5('139.199.228.33/sin/public/account/update?token=FBCB372EAE067AB652286AECAF11AE11'), 8, 24);
         echo json_encode([22,'33']);
         return json([22,'33']);
     }
