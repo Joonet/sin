@@ -146,8 +146,12 @@ class Account extends ApiBase
         return myJson('200', '登录成功', $user->hidden(['password']));
     }
 
-
-    public function update($id,$sign){
+    /**
+     * @param image_small,image_large,birthday,gender,location
+     * @param $sign
+     * @return \think\response\Json
+     */
+    public function update($id, $sign){
         $id = isset($id)?input('post.id'):1;
         $sign = input('post.sign');
 
@@ -155,13 +159,16 @@ class Account extends ApiBase
             return myJson(403, '签名错误');
 
         $user = User::get($id);
-        $this->assign('createTime',$user->create_time);
+        $params = input('post.');
+        $user['image_small'] = $params['image_small'];
+        $user['image_large'] = $params['image_large'];
+        $user['birthday']    = $params['birthday'];
+        $user['gender']      = $params['gender'];
+        $user['location']    = $params['location'];
 
-        echo $user->create_time;
-        echo $user->update_time;
-        $user['birthday'] = '2003-03-02';
-        $user->save();
-        echo $user->birthday;
+        if ($user->allowField(true)->save())
+            return mJson(200, '个人资料更新成功');
+        return mJson(400, 'Bad');
     }
 
     /**

@@ -50,7 +50,15 @@ class Mixed extends ApiBase
     }
 
     public function test(){
+        // 数组-字符串-数组
+        echo implode('-', [1,2,4]);
 
+
+
+        $date = '3/2/2017';
+        echo strtotime($date)."</br>";
+        echo date('m/d/Y', 1488384000);
+        return '';
 
         $tmp = 300;
         $int_options = array(
