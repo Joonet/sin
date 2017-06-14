@@ -42,8 +42,8 @@ class User extends Model
     {
         echo "BB".$value;
         foreach ($this->month as $k => $v){
-
-            if (stripos($value, $k) == true){
+            echo $k."</br>";
+            if (strpos($value, $k) == true){
                 echo str_replace($k, $v, $value);
                 return strtotime(str_replace($k, $v, $value));
             }
