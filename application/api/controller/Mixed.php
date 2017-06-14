@@ -8,6 +8,7 @@
 
 namespace app\api\controller;
 
+use app\api\model\User;
 use think\Controller;
 use think\Request;
 use think\Db;
@@ -38,6 +39,11 @@ class Mixed extends ApiBase
     }
 
     public function jo(){
+        $user = User::get('2');
+        //userInfo
+        $userInfo = ['userinfo' => $user];
+        return myJson(200, '登录成功', $userInfo);
+
         $date = date('m/d/Y', 1046534400);
         $date_m = substr($date, 0, 2);
         foreach ($this->month as $k => $v){

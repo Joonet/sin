@@ -140,10 +140,12 @@ class Account extends ApiBase
             return myJson(402, '密码不正确,请重新输入');
         }
 
+
 //app客户端持久化token
         $token = $this->redis_write($user['id'], strtoupper(md5(uniqid('', true))));
         $user['token'] = $token;
-        return myJson('200', '登录成功', $user->hidden(['password']));
+        return myJson('200', '登录成功', ['userInfo' => $user->hidden(['password'])]);
+
     }
 
     /**
