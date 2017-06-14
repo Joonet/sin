@@ -161,7 +161,7 @@ class Account extends ApiBase
             return myJson(403, '签名错误');
 
         $user = User::get($id);
-        echo "bir:".$params;
+        dump($params);
         echo "bir:".$params['birthday'];
 //        $user['image_small'] = $params['image_small'];
 //        $user['image_large'] = $params['image_large'];
