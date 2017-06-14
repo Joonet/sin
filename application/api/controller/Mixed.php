@@ -39,6 +39,10 @@ class Mixed extends ApiBase
     }
 
     public function jo(){
+
+        echo substr(md5('139.199.228.33/account/update?token=85C71A4B832588C6995602846191CF55'), 8, 24);
+
+
         $user = User::get('2');
         //userInfo
         $userInfo = ['userinfo' => $user];
