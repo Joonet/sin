@@ -40,8 +40,10 @@ class User extends Model
     // birthday修改器
     protected function setBirthdayAttr($value)
     {
+        echo $value;
         foreach ($this->month as $k => $v){
             if (stripos($value, $k)){
+                echo str_replace($k, $v, $value);
                 return strtotime(str_replace($k, $v, $value));
             }
 
