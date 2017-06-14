@@ -61,15 +61,31 @@ class User extends Model
 
     protected function setGenderAttr($value)
     {
-        if ($value == 'Male')
-            return 1;
-        return 0;
+        switch ($value){
+            case 'Female':
+                return 0;
+            case 'Male':
+                return 1;
+            case 'Other':
+                return 2;
+            default:
+                return 3;
+        }
     }
     protected function getGenderAttr($value)
     {
-        if ($value == 1)
-            return 'Male';
-        return 'Female';
+
+        switch ($value){
+            case 0:
+                return 'Female';
+            case 1:
+                return 'Male';
+            case 2:
+                return 'Other';
+            default:
+                return 'Secrete';
+        }
+
     }
 
     protected function getCreateTimeAttr($createTime)
