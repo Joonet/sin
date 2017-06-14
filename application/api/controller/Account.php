@@ -162,12 +162,6 @@ class Account extends ApiBase
 
         $user = User::get($id);
         dump($params);
-        echo "bir:".$params['birthday'];
-//        $user['image_small'] = $params['image_small'];
-//        $user['image_large'] = $params['image_large'];
-//        $user['birthday']    = $params['birthday'];
-//        $user['gender']      = $params['gender'];
-//        $user['location']    = $params['location'];
 
         if ($user->allowField(true)->save($_POST, ['id' => $id]))
             return mJson(200, '个人资料更新成功');
