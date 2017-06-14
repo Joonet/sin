@@ -42,10 +42,11 @@ class User extends Model
     {
 
         foreach ($this->month as $k => $v){
-            if (!stripos($value, $k))
-                return 1;
-            str_replace($k, $v, $value);
-            return strtotime($value);
+            if (stripos($value, $k)){
+                str_replace($k, $v, $value);
+                return strtotime($value);
+            }
+            
         }
     }
     protected function getBirthdayAttr($birthday)
