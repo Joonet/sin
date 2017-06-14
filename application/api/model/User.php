@@ -40,13 +40,11 @@ class User extends Model
     // birthday修改器
     protected function setBirthdayAttr($value)
     {
-
         foreach ($this->month as $k => $v){
             if (stripos($value, $k)){
-                str_replace($k, $v, $value);
-                return strtotime($value);
+                return strtotime(str_replace($k, $v, $value));
             }
-            
+
         }
     }
     protected function getBirthdayAttr($birthday)
