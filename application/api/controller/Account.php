@@ -153,21 +153,22 @@ class Account extends ApiBase
      * @return \think\response\Json
      */
     public function update(){
-        $id = input('post.id');
-        $sign = input('post.sign');
+        $params = input('post.');
+        $id = $params['id'];
+        $sign = $params['sign'];
 
         if (!$this->isUser($id, $sign, $this->getUrl()))
             return myJson(403, '签名错误');
 
         $user = User::get($id);
-        $params = input('post.');
-        $user['image_small'] = $params['image_small'];
-        $user['image_large'] = $params['image_large'];
-        $user['birthday']    = $params['birthday'];
-        $user['gender']      = $params['gender'];
-        $user['location']    = $params['location'];
 
-        if ($user->allowField(true)->save())
+//        $user['image_small'] = $params['image_small'];
+//        $user['image_large'] = $params['image_large'];
+//        $user['birthday']    = $params['birthday'];
+//        $user['gender']      = $params['gender'];
+//        $user['location']    = $params['location'];
+
+        if ($user->allowField(true)->save($_POST, ['id' => $id]))
             return mJson(200, '个人资料更新成功');
         return mJson(400, 'Bad');
     }
