@@ -18,7 +18,6 @@ use app\api\model\PlatformPreference;
 class Account extends ApiBase
 {
 
-
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
@@ -144,7 +143,7 @@ class Account extends ApiBase
 //app客户端持久化token
         $token = $this->redis_write($user['id'], strtoupper(md5(uniqid('', true))));
         $user['token'] = $token;
-        return myJson('200', '登录成功', ['userInfo' => $user->hidden(['password'])]);
+        return myJson('200', '登录成功', ['userInfo' => $user->hidden(['password', 'create_time', 'game_classification'])]);
 
     }
 
@@ -161,7 +160,6 @@ class Account extends ApiBase
             return myJson(403, '签名错误');
 
         $user = User::get($id);
-        dump($params);
 
         if ($user->allowField(true)->save($_POST, ['id' => $id]))
             return mJson(200, '个人资料更新成功');
