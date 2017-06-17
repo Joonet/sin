@@ -46,8 +46,8 @@ class Mixed extends ApiBase
         $user = User::get('2');
         //userInfo
         $userInfo = ['userinfo' => $user];
-        return mJson(666, '的监控网络接口', $userInfo);
-        return myJson(200, '登录成功', $userInfo);
+        return mJson(655, '的监控网络接口', $userInfo);
+//        return myJson(200, '登录成功', $userInfo);
 
         $date = date('m/d/Y', 1046534400);
         $date_m = substr($date, 0, 2);

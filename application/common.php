@@ -45,7 +45,7 @@ function mJson($status, $msg, $data = ''){
         'status' => $status,
         'msg'    => $msg,
         'data'   => $data,
-    ));
+    ), JSON_UNESCAPED_UNICODE);
 }
 
 function getLedColor($id) {
