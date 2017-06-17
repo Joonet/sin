@@ -30,16 +30,16 @@ class Account extends ApiBase
         if (isset($params['email'])){
             $user = User::get(['email' => $params['email']]);
             if ($user){
-                return myJson(400, '邮箱已存在');
+                return mJson(400, '邮箱已存在');
             }
         }elseif (isset($params['name'])){
             $user = User::get(['name' => $params['name']]);
             if ($user){
-                return myJson(400, '用户名已存在');
+                return mJson(400, '用户名已存在');
             }
         }
 
-        return myJson(200, '可以注册');
+        return mJson(200, '可以注册');
 
     }
 
@@ -53,10 +53,10 @@ class Account extends ApiBase
         $user2 = User::get(['email' => $params['email']]);
         if ($user1 || $user2){
             if ($user1){
-                return myJson(400, '用户名已存在');
+                return mJson(400, '用户名已存在');
             }
             if ($user2){
-                return myJson(400, '邮箱已存在');
+                return mJson(400, '邮箱已存在');
             }
         }
 
@@ -132,18 +132,18 @@ class Account extends ApiBase
             $user = User::get(['name' => $name]);
         }
         if (!$user){
-             return myJson(404, '该用户不存在');
+             return mJson(404, '该用户不存在');
         }
 
         if (md5($password) != $user['password']){
-            return myJson(402, '密码不正确,请重新输入');
+            return mJson(402, '密码不正确,请重新输入');
         }
 
 
 //app客户端持久化token
         $token = $this->redis_write($user['id'], strtoupper(md5(uniqid('', true))));
         $user['token'] = $token;
-        return myJson('200', '登录成功', ['userInfo' => $user->hidden(['password', 'create_time', 'game_classification'])]);
+        return mJson('200', '登录成功', ['userInfo' => $user->hidden(['password', 'create_time', 'game_classification'])]);
 
     }
 
@@ -157,7 +157,7 @@ class Account extends ApiBase
         $sign = $params['sign'];
 
         if (!$this->isUser($id, $sign, $this->getUrl()))
-            return myJson(403, '签名错误');
+            return mJson(403, '签名错误');
 
         $user = User::get($id);
 
