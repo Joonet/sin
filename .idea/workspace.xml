@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff49a534-c2cd-4356-9194-e9959f3936d4" name="Default" comment="" />
+    <list default="true" id="ff49a534-c2cd-4356-9194-e9959f3936d4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/api/controller/Account.php" afterPath="$PROJECT_DIR$/application/api/controller/Account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/api/controller/Mixed.php" afterPath="$PROJECT_DIR$/application/api/controller/Mixed.php" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +21,8 @@
       <file leaf-file-name="Account.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/api/controller/Account.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+            <state relative-caret-position="368">
+              <caret line="165" column="23" lean-forward="false" selection-start-line="165" selection-start-column="21" selection-end-line="165" selection-end-column="23" />
               <folding>
                 <element signature="e#7#84#0#PHP" expanded="true" />
                 <element signature="e#115#144#0#PHP" expanded="true" />
@@ -70,21 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="standard_0.php" pinned="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_0.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17864">
-              <caret line="616" column="13" lean-forward="false" selection-start-line="616" selection-start-column="13" selection-end-line="616" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Mixed.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1075">
-              <caret line="59" column="55" lean-forward="false" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
+            <state relative-caret-position="611">
+              <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
               <folding>
                 <element signature="e#116#139#0#PHP" expanded="true" />
               </folding>
@@ -141,6 +134,7 @@
       <find>redis_write</find>
       <find>$time</find>
       <find>myJson</find>
+      <find>40</find>
     </findStrings>
     <replaceStrings>
       <replace>mJson</replace>
@@ -176,9 +170,9 @@
         <option value="$PROJECT_DIR$/application/common.php" />
         <option value="$PROJECT_DIR$/application/api/model/PlatformPreference.php" />
         <option value="$PROJECT_DIR$/application/api/validate/Account.php" />
-        <option value="$PROJECT_DIR$/application/api/controller/Mixed.php" />
         <option value="$PROJECT_DIR$/application/api/base/ApiBase.php" />
         <option value="$PROJECT_DIR$/application/api/model/User.php" />
+        <option value="$PROJECT_DIR$/application/api/controller/Mixed.php" />
         <option value="$PROJECT_DIR$/application/api/controller/Account.php" />
       </list>
     </option>
@@ -444,12 +438,12 @@
       <workItem from="1497493743058" duration="1227000" />
       <workItem from="1497583158800" duration="2318000" />
       <workItem from="1497595589024" duration="1176000" />
-      <workItem from="1497680151366" duration="1191000" />
+      <workItem from="1497680151366" duration="1871000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156629000" />
+    <option name="totallyTimeSpent" value="157309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -743,24 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/base/ApiBase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-          <folding>
-            <element signature="e#7#84#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_0.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17864">
-          <caret line="616" column="13" lean-forward="false" selection-start-line="616" selection-start-column="13" selection-end-line="616" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/api/model/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -793,16 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1075">
-          <caret line="59" column="55" lean-forward="false" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
-          <folding>
-            <element signature="e#116#139#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thinkphp/helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -827,10 +793,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_0.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1048">
+          <caret line="616" column="13" lean-forward="false" selection-start-line="616" selection-start-column="13" selection-end-line="616" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/api/base/ApiBase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <element signature="e#7#84#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+          <folding>
+            <element signature="e#116#139#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/api/controller/Account.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        <state relative-caret-position="368">
+          <caret line="165" column="23" lean-forward="false" selection-start-line="165" selection-start-column="21" selection-end-line="165" selection-end-column="23" />
           <folding>
             <element signature="e#7#84#0#PHP" expanded="true" />
             <element signature="e#115#144#0#PHP" expanded="true" />

@@ -143,7 +143,7 @@ class Account extends ApiBase
 //app客户端持久化token
         $token = $this->redis_write($user['id'], strtoupper(md5(uniqid('', true))));
         $user['token'] = $token;
-        return mJson('200', '登录成功', ['userInfo' => $user->hidden(['password', 'create_time', 'game_classification'])]);
+        return mJson(200, '登录成功', ['userInfo' => $user->hidden(['password', 'create_time', 'game_classification'])]);
 
     }
 
