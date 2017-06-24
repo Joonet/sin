@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>woAs</title>
+    <script src="index.html"></script>
+</head>
+<body>
+<p id="para">第一段</p>
+<button id="myButton" onclick="myClick()">我变</button>
+
+<input id="demo" type="text">
+
+<script>
+//    window.alert('jo');
+    document.write('这是啥');
+    function myClick() {
+        var x = document.getElementById("para");
+        x.style.color = "#ff0000";
+//        x.innerHTML = '第二段';
+        x.innerText = test();
+    }
+    
+    function myFunc() {
+        var x = document.getElementById("demo").value;
+        if (x == '' || isNaN(x)){
+            alert('不是数字');
+        }else  {
+            alert('Y');
+        }
+        console.log(x);
+    }
+
+    function test() {
+        var jo = {
+            name : 'Jo',
+            age  : 25,
+            hobby:function () {
+                return this.name;
+            }
+        }
+        return jo.hobby();
+    }
+</script>
+
+<button onclick="myFunc()">判断</button>
+<button onclick="test()">test</button>
+</body>
+</html>

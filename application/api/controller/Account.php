@@ -7,12 +7,15 @@
  * Time: 14:29
  */
 namespace app\api\controller;
+
+
 use think\cache\driver\Redis;
 use think\Db;
 use think\Request;
 use app\api\base\ApiBase;
 use app\api\model\User;
 use app\api\model\PlatformPreference;
+require EXTEND_PATH.'/autoload.php';
 
 
 class Account extends ApiBase
@@ -38,7 +41,6 @@ class Account extends ApiBase
                 return mJson(400, '用户名已存在');
             }
         }
-
         return mJson(200, '可以注册');
 
     }
@@ -183,6 +185,19 @@ class Account extends ApiBase
     public function logout(){
         //验证身份后执行
         self::$redis->rm('id');
+    }
+
+    /**
+     * @return string $token
+     */
+    public function qiniu(){
+        $accessKey = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
+        $secretKey = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
+        $auth = new Auth($accessKey, $secretKey);
+        // 空间名  https://developer.qiniu.io/kodo/manual/concepts
+        $bucket = 'Bucket_Name';
+        // 生成上传Token
+        return $auth->uploadToken($bucket);
     }
 
 }

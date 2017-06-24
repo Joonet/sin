@@ -7,12 +7,14 @@
  */
 
 namespace app\api\controller;
+require EXTEND_PATH.'/autoload.php';
 
 use app\api\model\User;
-use think\Controller;
 use think\Request;
 use think\Db;
 use app\api\base\ApiBase;
+use Qiniu\Auth;
+
 
 class Mixed extends ApiBase
 {
@@ -36,6 +38,19 @@ class Mixed extends ApiBase
         parent::__construct($request);
         define("CONSTANT", 'nidaye');
 
+    }
+
+    /**
+     * @return string $token
+     */
+    public function qiniu(){
+        $accessKey = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
+        $secretKey = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
+        $auth = new Auth($accessKey, $secretKey);
+        // 空间名  https://developer.qiniu.io/kodo/manual/concepts
+        $bucket = 'Bucket_Name';
+        // 生成上传Token
+        return $auth->uploadToken($bucket);
     }
 
     public function jo(){
