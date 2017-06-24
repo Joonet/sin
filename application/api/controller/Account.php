@@ -7,7 +7,7 @@
  * Time: 14:29
  */
 namespace app\api\controller;
-require EXTEND_PATH.'/autoload.php';
+require EXTEND_PATH.'autoload.php';
 
 use think\cache\driver\Redis;
 use think\Db;
