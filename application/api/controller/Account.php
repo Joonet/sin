@@ -7,7 +7,7 @@
  * Time: 14:29
  */
 namespace app\api\controller;
-
+require EXTEND_PATH.'/autoload.php';
 
 use think\cache\driver\Redis;
 use think\Db;
@@ -15,7 +15,8 @@ use think\Request;
 use app\api\base\ApiBase;
 use app\api\model\User;
 use app\api\model\PlatformPreference;
-require EXTEND_PATH.'/autoload.php';
+use Qiniu\Auth;
+
 
 
 class Account extends ApiBase
