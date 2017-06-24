@@ -142,10 +142,19 @@ class Account extends ApiBase
             return mJson(402, '密码不正确,请重新输入');
         }
 
+        $accessKey = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
+        $secretKey = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
+        $auth = new Auth($accessKey, $secretKey);
+        // 空间名  https://developer.qiniu.io/kodo/manual/concepts
+        $bucket = 'Bucket_Name';
+        // 生成上传Token
+        $qiniu = $auth->uploadToken($bucket);
+
 
 //app客户端持久化token
         $token = $this->redis_write($user['id'], strtoupper(md5(uniqid('', true))));
         $user['token'] = $token;
+        $user['qiniu'] = $qiniu;
         return mJson(200, '登录成功', ['userInfo' => $user->hidden(['password', 'create_time', 'game_classification'])]);
 
     }
