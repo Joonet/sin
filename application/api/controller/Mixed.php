@@ -14,6 +14,7 @@ use think\Request;
 use think\Db;
 use app\api\base\ApiBase;
 use Qiniu\Auth;
+use Qiniu\Zone;
 
 
 class Mixed extends ApiBase
@@ -50,13 +51,13 @@ class Mixed extends ApiBase
         // 空间名  https://developer.qiniu.io/kodo/manual/concepts
         $bucket = 'jonet';
         // 生成上传Token
-        return $auth->uploadToken($bucket, 3600);
+        return $auth->uploadToken($bucket, null, 3600, null);
     }
 
     public function jo(){
 
         echo substr(md5('139.199.228.33/account/update?token=85C71A4B832588C6995602846191CF55'), 8, 24);
-
+        Zone::class
 
         $user = User::get('2');
         //userInfo
