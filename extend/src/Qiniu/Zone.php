@@ -4,7 +4,7 @@ namespace Qiniu;
 use Qiniu\Http\Client;
 use Qiniu\Http\Error;
 
-final class zZone
+final class Zone
 {
     public $ioHost;            // 七牛源站Host
     public $upHost;
@@ -159,7 +159,7 @@ final class zZone
     /*  请求包：
      *   GET /v1/query?ak=<ak>&&bucket=<bucket>
      *  返回包：
-     *  
+     *
      *  200 OK {
      *    "ttl": <ttl>,              // 有效时间
      *    "http": {

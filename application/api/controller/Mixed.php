@@ -16,8 +16,6 @@ use app\api\base\ApiBase;
 use Qiniu\Auth;
 use Qiniu\Zone;
 
-define('AK', 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5', false);
-define('SK', '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb', false);
 class Mixed extends ApiBase
 {
 
@@ -38,7 +36,6 @@ class Mixed extends ApiBase
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
-        define("CONSTANT", 'nidaye');
 
     }
 
