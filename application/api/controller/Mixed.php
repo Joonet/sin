@@ -20,6 +20,9 @@ use Qiniu\Zone;
 class Mixed extends ApiBase
 {
 
+    const AK = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
+    const SK = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
+
     private $month = [
         'January'   => '01',
         'February'  => '02',
@@ -45,8 +48,8 @@ class Mixed extends ApiBase
      * @return string $token
      */
     public function qiniu(){
-        $accessKey = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
-        $secretKey = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
+        $accessKey = constant("AK");
+        $secretKey = constant("SK");
         $auth = new Auth($accessKey, $secretKey);
         // 空间名  https://developer.qiniu.io/kodo/manual/concepts
         $bucket = 'jonet';
@@ -57,7 +60,7 @@ class Mixed extends ApiBase
     public function jo(){
 
         echo substr(md5('139.199.228.33/account/update?token=85C71A4B832588C6995602846191CF55'), 8, 24);
-        Zone::class
+
 
         $user = User::get('2');
         //userInfo

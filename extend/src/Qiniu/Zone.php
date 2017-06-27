@@ -4,7 +4,7 @@ namespace Qiniu;
 use Qiniu\Http\Client;
 use Qiniu\Http\Error;
 
-final class Zone
+final class zZone
 {
     public $ioHost;            // 七牛源站Host
     public $upHost;
