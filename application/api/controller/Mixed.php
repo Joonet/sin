@@ -16,12 +16,10 @@ use app\api\base\ApiBase;
 use Qiniu\Auth;
 use Qiniu\Zone;
 
-
+define('AK', 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5', false);
+define('SK', '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb', false);
 class Mixed extends ApiBase
 {
-
-    const AK = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
-    const SK = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
 
     private $month = [
         'January'   => '01',
@@ -48,8 +46,8 @@ class Mixed extends ApiBase
      * @return string $token
      */
     public function qiniu(){
-        $accessKey = constant("AK");
-        $secretKey = constant("SK");
+        $accessKey = AK;
+        $secretKey = SK;
         $auth = new Auth($accessKey, $secretKey);
         // 空间名  https://developer.qiniu.io/kodo/manual/concepts
         $bucket = 'jonet';
