@@ -53,8 +53,8 @@
       <file leaf-file-name="Mixed.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+            <state relative-caret-position="406">
+              <caret line="55" column="50" lean-forward="false" selection-start-line="55" selection-start-column="50" selection-end-line="55" selection-end-column="50" />
               <folding>
                 <element signature="e#153#176#0#PHP" expanded="true" />
               </folding>
@@ -104,16 +104,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Auth.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/Auth.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/config.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -153,6 +143,7 @@
       <find>$zone.</find>
       <find>QINIU</find>
       <find>jo</find>
+      <find>$key</find>
     </findStrings>
     <replaceStrings>
       <replace>mJson</replace>
@@ -497,12 +488,12 @@
       <workItem from="1498271470520" duration="8264000" />
       <workItem from="1498443765306" duration="5547000" />
       <workItem from="1498529094384" duration="2559000" />
-      <workItem from="1498534277108" duration="358000" />
+      <workItem from="1498534277108" duration="674000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187697000" />
+    <option name="totallyTimeSpent" value="188013000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -871,14 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/Auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -903,6 +886,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/Auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="76" column="20" lean-forward="true" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/Zone.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -915,8 +906,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+        <state relative-caret-position="406">
+          <caret line="55" column="50" lean-forward="false" selection-start-line="55" selection-start-column="50" selection-end-line="55" selection-end-column="50" />
           <folding>
             <element signature="e#153#176#0#PHP" expanded="true" />
           </folding>

@@ -51,8 +51,9 @@ class Mixed extends ApiBase
         $auth = new Auth($accessKey, $secretKey);
         // 空间名  https://developer.qiniu.io/kodo/manual/concepts
         $bucket = 'jonet';
+
         // 生成上传Token
-        return $auth->uploadToken($bucket, null, 3600, null);
+        return $auth->uploadToken($bucket, 'jo.gif', 3600, null);
     }
 
     public function jo(){
