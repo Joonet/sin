@@ -18,6 +18,8 @@ use app\api\model\PlatformPreference;
 use Qiniu\Auth;
 
 
+define('AK', 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5');
+define('SK', '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb');
 
 class Account extends ApiBase
 {
@@ -142,13 +144,9 @@ class Account extends ApiBase
             return mJson(402, '密码不正确,请重新输入');
         }
 
-        $accessKey = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
-        $secretKey = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
-        $auth = new Auth($accessKey, $secretKey);
-        // 空间名  https://developer.qiniu.io/kodo/manual/concepts
-        $bucket = 'Bucket_Name';
+
         // 生成上传Token
-        $qiniu = $auth->uploadToken($bucket);
+        $qiniu = $this->qiniu();
 
 
 //app客户端持久化token
@@ -201,13 +199,14 @@ class Account extends ApiBase
      * @return string $token
      */
     public function qiniu(){
-        $accessKey = 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5';
-        $secretKey = '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb';
+        $accessKey = AK;
+        $secretKey = SK;
         $auth = new Auth($accessKey, $secretKey);
         // 空间名  https://developer.qiniu.io/kodo/manual/concepts
         $bucket = 'jonet';
+
         // 生成上传Token
-        return $auth->uploadToken($bucket, 300);
+        return $auth->uploadToken($bucket, null, 3600, null);
     }
 
 }

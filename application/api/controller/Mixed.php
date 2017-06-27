@@ -53,7 +53,7 @@ class Mixed extends ApiBase
         $bucket = 'jonet';
 
         // 生成上传Token
-        return $auth->uploadToken($bucket, 'jo.png', 3600, null);
+        return $auth->uploadToken($bucket, null, 3600, null);
     }
 
     public function jo(){
