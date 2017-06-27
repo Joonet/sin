@@ -16,6 +16,9 @@ use app\api\base\ApiBase;
 use Qiniu\Auth;
 use Qiniu\Zone;
 
+define('AK', 'ktWhhIycoPOuXyntFn60_fRydB1gcYnowbWLGcz5');
+define('SK', '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb');
+
 class Mixed extends ApiBase
 {
 

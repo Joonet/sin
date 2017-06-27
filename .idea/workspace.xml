@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff49a534-c2cd-4356-9194-e9959f3936d4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/api/controller/Mixed.php" afterPath="$PROJECT_DIR$/application/api/controller/Mixed.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extend/src/Qiniu/Zone.php" afterPath="$PROJECT_DIR$/extend/src/Qiniu/Zone.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mixed.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Mixed.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+            <state relative-caret-position="290">
+              <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
               <folding>
                 <element signature="e#153#176#0#PHP" expanded="true" />
               </folding>
@@ -94,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Zone.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Zone.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/Zone.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
-              <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+              <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
               <folding>
                 <element signature="e#24#46#0#PHP" expanded="true" />
               </folding>
@@ -197,8 +195,8 @@
         <option value="$PROJECT_DIR$/application/admin/view/index/test.html" />
         <option value="$PROJECT_DIR$/extend/autoload.php" />
         <option value="$PROJECT_DIR$/application/api/controller/Account.php" />
-        <option value="$PROJECT_DIR$/application/api/controller/Mixed.php" />
         <option value="$PROJECT_DIR$/extend/src/Qiniu/Zone.php" />
+        <option value="$PROJECT_DIR$/application/api/controller/Mixed.php" />
       </list>
     </option>
   </component>
@@ -499,12 +497,12 @@
       <workItem from="1498271470520" duration="8264000" />
       <workItem from="1498443765306" duration="5547000" />
       <workItem from="1498529094384" duration="2559000" />
-      <workItem from="1498534277108" duration="158000" />
+      <workItem from="1498534277108" duration="358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187497000" />
+    <option name="totallyTimeSpent" value="187697000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -881,16 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-          <folding>
-            <element signature="e#153#176#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -918,9 +906,19 @@
     <entry file="file://$PROJECT_DIR$/extend/src/Qiniu/Zone.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
-          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding>
             <element signature="e#24#46#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/api/controller/Mixed.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+          <folding>
+            <element signature="e#153#176#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
