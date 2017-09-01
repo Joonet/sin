@@ -184,7 +184,7 @@ class Mixed extends ApiBase
 
     }
 
-    function getign() {
+    public function getign() {
         $sign = 'Jo';
         echo("<script>console.log('".$sign."');</script>");
         echo("<script>console.log('".$sign."');</script>");
