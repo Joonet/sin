@@ -192,7 +192,7 @@ class Mixed extends ApiBase
         $sign = 'Jo';
         echo("<script>console.log('".$sign."');</script>");
         echo("<script>console.log('".$sign."');</script>");
-        return substr(md5("http://139.199.228.33/account/update?token=E76A9B9AAEF35D5BEA47B55A659EDC9D"), 8, 24);
+        return substr(md5("http://139.199.228.33/account/update?token=795BB8021A60AF9F05B0B371D976742F"), 8, 24);
     }
 
 
