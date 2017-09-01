@@ -165,6 +165,10 @@ class Mixed extends ApiBase
     }
 
     public function hehe(){
+        $sign = 'Jo';
+        echo("<script>console.log('".$sign."');</script>");
+        echo("<script>console.log('".$sign."');</script>");
+        return substr(md5("http://139.199.228.33/account/update?token=E76A9B9AAEF35D5BEA47B55A659EDC9D"), 8, 24);
         echo $this->getUrl();
         echo $_SERVER['HTTP_HOST'].$_SERVER['PATH_INFO'];
         echo "</br>";
