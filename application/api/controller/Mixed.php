@@ -46,6 +46,9 @@ class Mixed extends ApiBase
      * @return string $token
      */
     public function qiniu(){
+        echo mJson(200, '个人资料更新成功');
+        return mJson(400, 'Bad');
+
         $accessKey = AK;
         $secretKey = SK;
         $auth = new Auth($accessKey, $secretKey);
@@ -159,7 +162,6 @@ class Mixed extends ApiBase
             echo --$a;
         }
 
-
     }
 
     public function hehe(){
@@ -180,6 +182,13 @@ class Mixed extends ApiBase
         }
         Db::name('game_type_preference')->insert(['top1' => $nums[0], 'top2' => $nums[1], 'top3' => $nums[2], 'user_id' => 2222]);
 
+    }
+
+    function getign() {
+        $sign = 'Jo';
+        echo("<script>console.log('".$sign."');</script>");
+        echo("<script>console.log('".$sign."');</script>");
+        return substr(md5("http://139.199.228.33/account/update?token=E76A9B9AAEF35D5BEA47B55A659EDC9D"), 8, 24);
     }
 
 
