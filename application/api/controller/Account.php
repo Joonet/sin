@@ -165,8 +165,7 @@ class Account extends ApiBase
         $params = input('post.');
         $id = $params['id'];
         $sign = $params['sign'];
-
-            echo($params);
+        var_dump($params);
         if (!$this->isUser($id, $sign, $this->getUrl()))
             return mJson(403, '签名错误');
 
