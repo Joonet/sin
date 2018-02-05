@@ -345,7 +345,7 @@ class Account extends ApiBase
         $json = $params['jsonBody'];
         //将Json转化为数组
         $arr = json_decode($json, true);
-        dump($arr);
+
         $profileName = '';
         foreach ($arr as $key=>$value){
             if ($key == 'Name'){
@@ -384,8 +384,9 @@ class Account extends ApiBase
                     switch ($subKey){
                         case 'Name':
                             //id
-                            $led = Led::where('name', $subValue)->find();
+                            $led = LedName::where('name', $subValue)->find();
                             $ledData['led_id'] = $led->id;
+                            echo $led->id;
                             break;
                         case 'Colors':
                             $ledData['r'] = $subValue[0];
@@ -399,7 +400,9 @@ class Account extends ApiBase
                             $ledData['mode'] = $subValue;
                             break;
                     }
-                    $ledDetail['profile_id'] = (Profile::where('name', $profileName)->find())->id;
+                    $someProfile = Profile::getByName($profileName);
+
+                    $ledDetail['profile_id'] = 5;
                     $ledDetail = new LedDetail($ledData);
                     $ledDetail->save($ledData);
 
