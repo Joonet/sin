@@ -9,12 +9,16 @@
 namespace app\api\controller;
 require EXTEND_PATH.'autoload.php';
 
+use app\api\model\Led;
+use app\api\model\Profile;
 use think\cache\driver\Redis;
 use think\Db;
 use think\Request;
 use app\api\base\ApiBase;
 use app\api\model\User;
 use app\api\model\PlatformPreference;
+use app\api\model\LedDetail;
+use app\api\model\LedName;
 use Qiniu\Auth;
 
 
@@ -23,6 +27,7 @@ define('SK', '8PfAKarg77ipKFswyL7mAXMmHtOsZ80ryuHWP5vb');
 
 class Account extends ApiBase
 {
+
 
     public function __construct(Request $request = null)
     {
@@ -207,6 +212,211 @@ class Account extends ApiBase
 
         // 生成上传Token
         return $auth->uploadToken($bucket, null, 3600, null);
+    }
+
+
+    /**
+     * @return string
+     * ["Name"] => string(9) "Jo's Test"
+    ["Noti"] => array(4) {
+    ["Name"] => NULL
+    ["Colors"] => NULL
+    ["Open"] => bool(false)
+    ["Mode"] => NULL
+    }
+    ["Warn"] => array(4) {
+    ["Name"] => NULL
+    ["Colors"] => NULL
+    ["Open"] => bool(false)
+    ["Mode"] => NULL
+    }
+    ["X"] => array(4) {
+    ["Name"] => string(5) "LED_X"
+    ["Colors"] => array(3) {
+    [0] => int(26)
+    [1] => int(119)
+    [2] => int(186)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["Y"] => array(4) {
+    ["Name"] => string(5) "LED_Y"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(255)
+    [2] => int(0)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["A"] => array(4) {
+    ["Name"] => string(5) "LED_A"
+    ["Colors"] => array(3) {
+    [0] => int(64)
+    [1] => int(179)
+    [2] => int(79)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["B"] => array(4) {
+    ["Name"] => string(5) "LED_B"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(0)
+    [2] => int(0)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["Dpad"] => array(4) {
+    ["Name"] => string(6) "LED_Up"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(235)
+    [2] => int(4)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["Back"] => array(4) {
+    ["Name"] => string(8) "LED_Back"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(235)
+    [2] => int(4)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["Start"] => array(4) {
+    ["Name"] => string(9) "LED_Start"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(235)
+    [2] => int(4)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["Stick"] => array(4) {
+    ["Name"] => string(9) "LED_Stick"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(235)
+    [2] => int(4)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["LB"] => array(4) {
+    ["Name"] => string(6) "LED_LB"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(235)
+    [2] => int(4)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+    ["RB"] => array(4) {
+    ["Name"] => string(6) "LED_RB"
+    ["Colors"] => array(3) {
+    [0] => int(255)
+    [1] => int(235)
+    [2] => int(4)
+    }
+    ["Open"] => bool(true)
+    ["Mode"] => string(5) "PULSE"
+    }
+     */
+
+    //mysql_profile创建currentProfile
+    public function updateProfile(){
+        $params = input('post.');
+        $id = $params['id'];
+        $sign = $params['sign'];
+
+        if (!$this->isUser($id, $sign, $this->getUrl())) {
+            return mJson(403, '签名错误');
+        }
+
+        $json = $params['jsonBody'];
+        //将Json转化为数组
+        $arr = json_decode($json, true);
+        dump($arr);
+        $profileName = '';
+        foreach ($arr as $key=>$value){
+            if ($key == 'Name'){
+                //记录下profile_name
+                $profileName = $value;
+                $profile = new Profile();
+                $profile->name = $value;
+                $profile->user_id = $id;
+                if ($profile->save()){
+                    echo("<script>console.log('profile写入成功');</script>");
+                }
+            }
+            elseif ($key == 'Noti' || $key == 'Warn'){
+                continue;
+            }
+            else{
+                /**
+                 *
+                ["X"] => array(4) {
+                ["Name"] => string(1) "X"
+                ["Colors"] => array(3) {
+                [0] => int(253)
+                [1] => int(38)
+                [2] => int(255)
+                }
+                ["Open"] => bool(true)
+                ["Mode"] => string(6) "IMPACT"
+                }
+                 */
+                //keys:r,g,b,a,onoff,mode,led_id,profile_id
+                //values:
+
+                $led_name = $key;
+                foreach ($value as $subKey=>$subValue){
+                    $ledData = array();
+                    switch ($subKey){
+                        case 'Name':
+                            //id
+                            $led = Led::where('name', $subValue)->find();
+                            $ledData['led_id'] = $led->id;
+                            break;
+                        case 'Colors':
+                            $ledData['r'] = $subValue[0];
+                            $ledData['g'] = $subValue[1];
+                            $ledData['b'] = $subValue[2];
+                            break;
+                        case 'Open':
+                            $ledData['onoff'] = ($subValue == true) ? 1:0;
+                            break;
+                        case 'Mode':
+                            $ledData['mode'] = $subValue;
+                            break;
+                    }
+                    $ledDetail['profile_id'] = (Profile::where('name', $profileName)->find())->id;
+                    $ledDetail = new LedDetail($ledData);
+                    $ledDetail->save($ledData);
+
+                }
+
+
+            }
+        }
+
+
+
+        dump(json_encode($arr));
+
+        $user = User::get($id);
+
+        dump($user) ;
+
     }
 
 }
