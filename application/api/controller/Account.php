@@ -349,7 +349,6 @@ class Account extends ApiBase
         $profileName = '';
         foreach ($arr as $key=>$value){
             if ($key == 'Name'){
-                //记录下profile_name
                 $profileName = $value;
                 $profile = new Profile();
                 $profile->name = $value;
@@ -358,7 +357,9 @@ class Account extends ApiBase
                     echo("<script>console.log('profile写入成功');</script>");
                 }
             }
-            elseif ($key == 'Noti' || $key == 'Warn'){
+        }
+        foreach ($arr as $key=>$value){
+            if ($key == 'Name'){
                 continue;
             }
             else{
@@ -379,11 +380,13 @@ class Account extends ApiBase
                 //values:
 
                 $led_name = $key;
+                $ledData = array();
                 foreach ($value as $subKey=>$subValue){
-                    $ledData = array();
+
                     switch ($subKey){
                         case 'Name':
                             //id
+                            echo 'name'.$subValue;
                             $led = LedName::where('name', $subValue)->find();
                             $ledData['led_id'] = $led->id;
                             echo $led->id;
@@ -400,13 +403,14 @@ class Account extends ApiBase
                             $ledData['mode'] = $subValue;
                             break;
                     }
-                    $someProfile = Profile::getByName($profileName);
-
-                    $ledDetail['profile_id'] = 5;
-                    $ledDetail = new LedDetail($ledData);
-                    $ledDetail->save($ledData);
 
                 }
+
+                $someProfile = Profile::where('name', $profileName)->find();
+                $ledData['profile_id'] = $someProfile->id;
+                $ledDetail = new LedDetail($ledData);
+                $ledDetail->save($ledData);
+                $ledData = array();
 
 
             }
@@ -414,11 +418,11 @@ class Account extends ApiBase
 
 
 
-        dump(json_encode($arr));
-
-        $user = User::get($id);
-
-        dump($user) ;
+//        dump(json_encode($arr));
+//
+//        $user = User::get($id);
+//
+//        dump($user) ;
 
     }
 
