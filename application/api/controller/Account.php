@@ -405,7 +405,7 @@ class Account extends ApiBase
                     }
 
                 }
-
+                //需判断新插入还是更新
                 $someProfile = Profile::where('name', $profileName)->find();
                 $ledData['profile_id'] = $someProfile->id;
                 $ledDetail = new LedDetail($ledData);
@@ -424,6 +424,16 @@ class Account extends ApiBase
 //
 //        dump($user) ;
 
+    }
+
+    public function getProfile($id=1){
+        $id=$_GET['id'];
+        // 使用数组查询,获取多个数据
+        $list = LedDetail::all(['profile_id'=>$id]);
+        echo count($list);
+        foreach ($list as $value){
+            echo json_encode($value).'<br />';
+        }
     }
 
 }
