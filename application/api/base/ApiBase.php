@@ -35,7 +35,7 @@ class ApiBase extends Controller
     }
 
     protected function getUrl(){
-        return $_SERVER["HTTP_HOST"].$_SERVER["PATH_INFO"];
+        return $_SERVER["HTTP_HOST"].'/'.$_SERVER["PATH_INFO"];
     }
 
     protected function getSign($url, $token) {
